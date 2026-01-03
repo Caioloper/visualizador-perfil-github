@@ -3,6 +3,7 @@ const btnSearch = document.getElementById('btn-search');
 const profileResults = document.querySelector('.profile-results');
 
 export { btnSearch };
+export { inputSearch };
 
 export function getInputValue() {
     return inputSearch.value.trim();

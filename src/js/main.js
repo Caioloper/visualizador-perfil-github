@@ -1,7 +1,7 @@
-import { btnSearch, getInputValue, setLoading, clearResults, showAlert, renderProfile } from './ui.js';
+import { btnSearch, inputSearch, getInputValue, setLoading, clearResults, showAlert, renderProfile } from './ui.js';
 import { fetchGithubUser, fetchGithubUserRepos } from './api.js';
 
-btnSearch.addEventListener('click', async () => {
+async function getUserProfile() {
     const username = getInputValue();
     if (!username) {
         showAlert('Por favor, insira um nome de usuário do GitHub.');
@@ -23,5 +23,15 @@ btnSearch.addEventListener('click', async () => {
             showAlert('Ocorreu um erro ao buscar o perfil. Por favor, tente novamente mais tarde.');
         }
         clearResults();
+    }
+}
+
+btnSearch.addEventListener('click', async () => {
+    await getUserProfile();
+});
+
+inputSearch.addEventListener('keypress', async (event) => {
+    if (event.key === 'Enter') {
+        await getUserProfile();
     }
 });
